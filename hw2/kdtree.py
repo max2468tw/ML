@@ -1,22 +1,14 @@
 import numpy as np
 import sys
 
-data = np.loadtxt('train.csv', delimiter = ',', dtype={'names':('index','0','1','2','3','4','5','6','7','8','9','10'),'formats': ('i4','U15','f8','f8','f8','f8','f8','f8','f8','f8','f8','U5')})
+data = np.loadtxt('trai.csv', delimiter = ',', dtype={'names':('index','0','1','2','3','4','5','6','7','8','9','10'),'formats': ('i4','U15','f8','f8','f8','f8','f8','f8','f8','f8','f8','U5')})
 
 class Tree(object):
     def __init__(self):
         self.left = None
         self.right = None
         self.data = None
- 
-root = Tree()
-root.data = "root"
-root.left = Tree()
-root.left.data = "left"
-root.right = Tree()
-root.right.data = "right"
- 
-print(root.left.data)
+
 def normalize(data):
 	normalized_data = data
 	names = np.asarray(data.dtype.names)
@@ -52,7 +44,9 @@ def create_kdtree(data, attribute):
 	if data.size == 0:
 		return None
 	elif data.size == 1:
-		return data[0]
+		root = Tree()
+		root.data = data[0]
+		return root
 	else:		
 		best = choose_middle(data,attribute)
 		root = Tree()
@@ -70,11 +64,12 @@ def create_kdtree(data, attribute):
 		subtree = create_kdtree(data1, attribute)
 		root.right = subtree
 	return root
+x = create_kdtree(data, '1')
 
 def descendTree(x, q, attribute):
-	if x.left == None && x.right == None:
+	if x.left == None and x.right == None:
 		return [x,attribute]
-	elif q[attribute] >= x[attribute]:
+	elif q[attribute] >= x.data[attribute]:
 		if x.right != None:
 			get_next_attribute(attribute)
 			return descendTree(x.right, q, attribute)
@@ -86,7 +81,8 @@ def descendTree(x, q, attribute):
 			return descendTree(x.left, q, attribute)
 		else:
 			return [x,attribute]
-
+print (data[100])
+print (descendTree(x, data[100], '1'))
 def find_the_nearest(q, r):
 	t = None
 	d_t = 10000000000000
@@ -96,7 +92,7 @@ def find_the_nearest(q, r):
 			t = x
 			d_t = d(q,x)
 		if boundaryDist(q,x) < d_t:
-			x = descendTree(x,q)
+			x = descendTree(x,q,'0')
 		else:
 			x = parent(x)
 	return t
