@@ -217,18 +217,6 @@ def KNN_PCA(trainning_data, testing_data, k, list):
 	return [max_id, list]
 
 def main(k):
-	with open ('train.csv', 'r') as f:
-		a = f.readlines()
-		del a[0]
-	with open('tr.csv', 'w') as f:
-		for i in range(len(a)):		
-			f.write(a[i])
-	with open ('test.csv', 'r') as f:
-		a = f.readlines()
-		del a[0]
-	with open('ts.csv', 'w') as f:
-		for i in range(len(a)):		
-			f.write(a[i])
 	trainning_data = np.loadtxt('tr.csv', delimiter = ',', dtype={'names':('index','0','1','2','3','4','5','6','7','8','9','10'),'formats': ('i4','U15','f8','f8','f8','f8','f8','f8','f8','f8','f8','U5')})
 	testing_data = np.loadtxt('ts.csv', delimiter = ',', dtype={'names':('index','0','1','2','3','4','5','6','7','8','9','10'),'formats': ('i4','U15','f8','f8','f8','f8','f8','f8','f8','f8','f8','U5')})
 	t = f = 0
@@ -348,7 +336,18 @@ def PCA():
 			f = f + 1
 	print(t/(t+f))
 	return
-
+with open ('train.csv', 'r') as f:
+	a = f.readlines()
+	del a[0]
+with open('tr.csv', 'w') as f:
+	for i in range(len(a)):		
+		f.write(a[i])
+with open ('test.csv', 'r') as f:
+	a = f.readlines()
+	del a[0]
+with open('ts.csv', 'w') as f:
+	for i in range(len(a)):		
+		f.write(a[i])
 main(1)
 main(5)
 main(10)
