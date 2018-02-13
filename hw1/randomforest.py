@@ -42,9 +42,9 @@ def entropy(data):
 	a = b = c = 0
 	entropy = 0
 	for i in range(data.size):
-		if data[i]['class'] == "b'Iris-setosa'":
+		if data[i]['class'] == 'Iris-setosa':
 			a = a + 1
-		elif data[i]['class'] == "b'Iris-versicolor'":
+		elif data[i]['class'] == 'Iris-versicolor':
 			b = b + 1
 		else :  
 			c = c + 1
@@ -87,18 +87,18 @@ def choose_best_attr(data, attributes):
 def majority_value(data):
 	a = b = c = 0
 	for i in range(data.size):	
-		if data[i]['class'] == "b'Iris-setosa'":
+		if data[i]['class'] == 'Iris-setosa':
 			a = a + 1
-		elif data[i]['class'] == "b'Iris-versicolor'":
+		elif data[i]['class'] == 'Iris-versicolor':
 			b = b + 1
 		else :  
 			c = c + 1
 	if a > b and a > c:
-		return "b'Iris-setosa'"
+		return 'Iris-setosa'
 	elif b > a and b > c:
-		return "b'Iris-versicolor'"
+		return 'Iris-versicolor'
 	else: 
-		return "b'Iris-virginica'"
+		return 'Iris-virginica'
 
 #create decisiontree with attribute as label
 def create_decision_tree(data, attributes, parent):
@@ -182,28 +182,28 @@ def K_fold_cross_validation(data,k):
 						else:	
 							x = x[attr][1]
 							y = y[ts][1]
-				if (x == "b'Iris-setosa'" or x == "b'Iris-versicolor'" or x == "b'Iris-virginica'"):
-					if x == "b'Iris-setosa'" and testing_data[i]['class'] == "b'Iris-setosa'":					
+				if (x == 'Iris-setosa' or x == 'Iris-versicolor' or x == 'Iris-virginica'):
+					if x == 'Iris-setosa' and testing_data[i]['class'] == 'Iris-setosa':					
 						tp_a = tp_a + 1
-					elif x == "b'Iris-setosa'" and testing_data[i]['class'] != "b'Iris-setosa'":
+					elif x == 'Iris-setosa' and testing_data[i]['class'] != 'Iris-setosa':
 						fp_a = fp_a + 1
-					elif x != "b'Iris-setosa'" and testing_data[i]['class'] == "b'Iris-setosa'":
+					elif x != 'Iris-setosa' and testing_data[i]['class'] == 'Iris-setosa':
 						fn_a = fn_a + 1
 					else:	tn_a = tn_a + 1
 
-					if x == "b'Iris-versicolor'" and testing_data[i]['class'] == "b'Iris-versicolor'":
+					if x == 'Iris-versicolor' and testing_data[i]['class'] == 'Iris-versicolor':
 						tp_b = tp_b + 1
-					elif x == "b'Iris-versicolor'" and testing_data[i]['class'] != "b'Iris-versicolor'":
+					elif x == 'Iris-versicolor' and testing_data[i]['class'] != 'Iris-versicolor':
 						fp_b = fp_b + 1
-					elif x != "b'Iris-versicolor'" and testing_data[i]['class'] == "b'Iris-versicolor'":
+					elif x != 'Iris-versicolor' and testing_data[i]['class'] == 'Iris-versicolor':
 						fn_b = fn_b + 1
 					else:	tn_b = tn_b + 1
 
-					if x == "b'Iris-virginica'" and testing_data[i]['class'] == "b'Iris-virginica'":
+					if x == 'Iris-virginica' and testing_data[i]['class'] == 'Iris-virginica':
 						tp_c = tp_c + 1
-					elif x == "b'Iris-virginica'" and testing_data[i]['class'] != "b'Iris-virginica'":
+					elif x == 'Iris-virginica' and testing_data[i]['class'] != 'Iris-virginica':
 						fp_c = fp_c + 1
-					elif x != "b'Iris-virginica'" and testing_data[i]['class'] == "b'Iris-virginica'":
+					elif x != 'Iris-virginica' and testing_data[i]['class'] == 'Iris-virginica':
 						fn_c = fn_c + 1
 					else:	tn_c = tn_c + 1
 					break
